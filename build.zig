@@ -107,6 +107,7 @@ pub fn build(b: *Build) void {
     libelftc.addCSourceFiles(libelftc_srcs, &.{});
     libelftc.addIncludePath("common");
     libelftc.addIncludePath("libelftc");
+    libelftc.linkLibC();
     libelftc.linkLibrary(libelf);
     libelftc.installHeader("libelftc/libelftc.h", "libelftc.h");
     b.installArtifact(libelftc);
