@@ -136,8 +136,7 @@ pub fn build(b: *Build) void {
     libpe.addCSourceFiles(libpe_srcs, &.{});
     libpe.addIncludePath("common");
     libpe.addIncludePath("libpe");
-    //libpe.linkLibrary(libelf);
-    //libpe.installHeader("libpe/pe.h", "pe.h");
+    libpe.installHeader("libpe/pe.h", "pe.h");
     libpe.installHeader("libpe/libpe.h", "libpe.h");
     b.installArtifact(libpe);
 
