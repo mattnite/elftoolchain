@@ -1,0 +1,10 @@
+.{
+    .name = "elftoolchain",
+    .version = "0.0.0",
+    .dependencies = .{
+        .libarchive = .{
+            .url = "https://github.com/mattnite/libarchive/archive/22a9a5b05146f7914a039086aed78ef43e257d35.tar.gz",
+            .hash = "1220b9c54b4db5afaa5f2a8f6dab94e416f82c9302cd36d2129f07475eba35f3bd36",
+        },
+    },
+}

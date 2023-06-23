@@ -65,6 +65,8 @@ pub fn build(b: *Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    const libarchive_dep = b.dependency("libarchive", .{});
+
     // libelf
     const elf_types_m4 = b.addSystemCommand(&.{ "m4", "libelf/elf_types.m4" });
     const elf_types = capture_stdout_with_basename(elf_types_m4, "elf_types.c");
@@ -165,6 +167,7 @@ pub fn build(b: *Build) void {
         .optimize = optimize,
     });
 
+    const libarchive = libarchive_dep.artifact("archive");
     add_elftoolchain_exe(b, .{
         .name = "elfcopy",
         .sources = &.{
@@ -177,7 +180,7 @@ pub fn build(b: *Build) void {
             "elfcopy/sections.c",
             "elfcopy/symbols.c",
         },
-        .libraries = &.{ libelf, libpe },
+        .libraries = &.{ libelf, libpe, libarchive },
         .target = target,
         .optimize = optimize,
     });
